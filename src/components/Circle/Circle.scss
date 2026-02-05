@@ -1,0 +1,145 @@
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 530px;
+  height: 530px;
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    &--animating {
+      .circle__point-label {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition:
+          opacity 0.2s,
+          visibility 0.2s;
+      }
+    }
+  }
+
+  &__border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(66, 86, 122, 0.2);
+    border-radius: 50%;
+  }
+
+  &__point {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #42567a;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.3s,
+      height 0.3s,
+      background 0.3s;
+    padding: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    &:hover {
+      width: 56px;
+      height: 56px;
+      background: #f4f5f9;
+      border: 1px solid rgba(48, 62, 88, 0.5);
+
+      .circle__point-number {
+        display: block;
+      }
+    }
+
+    &--active {
+      width: 56px;
+      height: 56px;
+      background: #f4f5f9;
+      border: 1px solid rgba(48, 62, 88, 0.5);
+
+      .circle__point-number {
+        display: block;
+        opacity: 1;
+      }
+
+      .circle__point-label {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  &__point-number {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #42567a;
+    transition: opacity 0.3s;
+  }
+
+  &__point-label {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 20px);
+    transform: translateY(-50%);
+    font-size: 20px;
+    font-weight: 700;
+    color: #42567a;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s,
+      visibility 0.3s;
+  }
+
+  @media (max-width: 1024px) {
+    width: 400px;
+    height: 400px;
+
+    &__point-label {
+      font-size: 16px;
+      left: calc(100% + 10px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+
+    &__point-label {
+      font-size: 16px;
+      left: calc(100% + 10px);
+    }
+  }
+}
+
+.circle,
+[class^="circle__"] {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
