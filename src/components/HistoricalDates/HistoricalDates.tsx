@@ -34,7 +34,6 @@ const HistoricalDates: React.FC<HistoricalDatesProps> = ({ data }) => {
   useEffect(() => {
     const newPeriod = data[activeIndex];
 
-    // Остановить предыдущие анимации
     tweensRef.current.forEach((tween) => tween.kill());
     tweensRef.current = [];
 
